@@ -8,6 +8,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "aws/aws-sdk-php": "^3.185",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.3",
         "laravel/framework": "^6.2",
