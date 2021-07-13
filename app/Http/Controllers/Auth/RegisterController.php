@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Postcode;
 
 class RegisterController extends Controller
 {
@@ -48,12 +49,25 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+
+
+        // dd($this->validatePostCode('GU50BD'));
+
+        $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'postcode' => ['required'],
+            'postcode' => ['required', new Postcode],
         ]);
+
+        // Validating post code
+        // $validator->after(function ($validator, $data) {
+        //     if ($this->validatePostCode($data['postcode']) != true) {
+        //         $validator->errors()->add('postcode', 'Invalid Postcode!');
+        //     }
+        // });
+
+        return $validator;
     }
 
     /**
@@ -70,5 +84,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'postcode' => $data['postcode'],
         ]);
+    }
+
+    private function validatePostCode(String $code)
+    {
+        
     }
 }

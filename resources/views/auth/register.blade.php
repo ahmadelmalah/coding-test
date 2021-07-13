@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="postcode" class="col-md-4 col-form-label text-md-right">Post Codes</label>
+                            <label for="postcode" class="col-md-4 col-form-label text-md-right">Post Code</label>
 
                             <div class="col-md-6">
                                 <input id="postcode" type="text" class="form-control @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" required>
